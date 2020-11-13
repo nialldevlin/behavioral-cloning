@@ -8,9 +8,9 @@ This project is contained in three main files: preprocess.py, model.py, and driv
 # The Data
 The data consists of one and a half laps. I originally recorded almost 15 gigabytes of data, however the car still failed to drive around steep turns. I decided to decrease the amount of data so it fit into my RAM better. I chose to record fewer laps at a higher quality than many sloppy laps. I recorded one complete lap and one lap consisting solely of sharp turns. This did not decrease the accuracy of the model significantly from the previous large dataset.
 
-|Example image       |Cropped and Resized Example Image |
-|--------------------|----------------------------------|
-|![](Figure_2.png) |![](Figure_1.png)                   |
+|Example image       |Resized Example Image |
+|--------------------|----------------------|
+|![](Figure_2.jpg)   |![](Figure_1.png)     |
 
 # Preprocess
 I moved the preprocessing steps to a separate file because it took a long time and it only needed to be run once. This sped up the process of training the model as the dataset did not need to be processed every time I changed a hyperparameter. The preprocessing augments the dataset and creates six times as many images as the original dataset. It also resizes the images so that they will be square after they are cropped in the model. The script uses the CSV file to compile a list of images from all three cameras and a list of measurements with a correction factor for the left and right. It also adds a flipped version of every image with the appropriate flipped measurement to prevent a bias towards steering left or right. These images are converted to a Numpy Float32 array and stored in a .npy file for use with the model.
@@ -44,4 +44,7 @@ A dropout of 0.5 is used to prevent overfitting. The model has a loss of about 0
 
 # Driving
 The default driving script is used, with a one minor change. It uses the same openCV function as the preprocessing script to resize the images to the appropriate size for the model.
+
+# Overview
+The most challenging part of this project was the steep turns. The car would turn, but not enough and drive straight into the lake. It also weaves back and forth slightly across the road, but that could be due to the vodka that accidentaly got fed into the model along with the dataset. I fixed this by increasing the correction factor for the left and right images. I did not use a generator for this project as my dataset fit into ram, however I would have implemented one had the need arose.
 
