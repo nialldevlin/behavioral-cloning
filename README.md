@@ -8,6 +8,10 @@ This project is contained in three main files: preprocess.py, model.py, and driv
 # The Data
 The data consists of one and a half laps. I originally recorded almost 15 gigabytes of data, however the car still failed to drive around steep turns. I decided to decrease the amount of data so it fit into my RAM better. I chose to record fewer laps at a higher quality than many sloppy laps. I recorded one complete lap and one lap consisting solely of sharp turns. This did not decrease the accuracy of the model significantly from the previous large dataset.
 
+|Example image       |Cropped and Resized Example Image |
+|--------------------|----------------------------------|
+|![](Figure_2.png) |![](Figure_1.png)                   |
+
 # Preprocess
 I moved the preprocessing steps to a separate file because it took a long time and it only needed to be run once. This sped up the process of training the model as the dataset did not need to be processed every time I changed a hyperparameter. The preprocessing augments the dataset and creates six times as many images as the original dataset. It also resizes the images so that they will be square after they are cropped in the model. The script uses the CSV file to compile a list of images from all three cameras and a list of measurements with a correction factor for the left and right. It also adds a flipped version of every image with the appropriate flipped measurement to prevent a bias towards steering left or right. These images are converted to a Numpy Float32 array and stored in a .npy file for use with the model.
 
