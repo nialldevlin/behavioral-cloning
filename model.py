@@ -53,6 +53,8 @@ model.add(Dense(10, activation='relu'))
 model.add(Dropout(dropout))
 model.add(Dense(1))
 
+print(model.summary())
+
 #Compile the model with early stopping and save it
 optimizer = Adam(lr=0.001)
 model.compile(optimizer=optimizer, loss='mse')
